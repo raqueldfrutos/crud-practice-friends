@@ -1,0 +1,30 @@
+{
+  "friends": [
+    {
+      "id": 1,
+      "img": "https://vader.news/__export/1647654633931/sites/gadgets/img/2022/03/18/rachel-green-jennifer_aniston.jpg_2005386124.jpg",
+      "name": "Rachel",
+      "lastName": "Green",
+      "gender": "female",
+      "age": 25
+    },
+    {
+      "id": 2,
+      "img": "https://assets.shortpedia.com/uploads/2021/04/12/1618230565.jpg",
+      "name": "Joey",
+      "lastName": "Tribbiani",
+      "gender": "male",
+      "age": 27
+    },
+    {
+      "id": 3
+    },
+    {
+      "name": "Raquel",
+      "lastName": "Berrris",
+      "age": "25",
+      "gender": "Female",
+      "id": 4
+    }
+  ]
+}
