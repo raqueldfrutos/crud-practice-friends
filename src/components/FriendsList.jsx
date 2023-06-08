@@ -26,11 +26,11 @@ function FriendsList() {
 
   useEffect(() => {
     getData();
-  });
+  }, []);
 
   const displayFriends = () => {
     return friends.map(friend => {
-      return <Friend key={friend.id} {...friend} />;
+      return <Friend key={friend.id} {...friend} handleEdit={handleEdit} handleDelete={handleDelete} />;
     });
   };
 
@@ -61,6 +61,22 @@ function FriendsList() {
       ...data,
       [e.target.name]: e.target.value
     });
+  };
+
+  const handleEdit = async (id, data) => {
+    try {
+      await axios.put(`${API_URL}/${id}`, data);
+      getData();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDelete = async id => {
+    try {
+      await axios.delete(`${API_URL}/${id}`);
+      getData();
+    } catch (error) {}
   };
 
   // deconstruimos el objeto data para poder utilizar las variables en los values de los inputs

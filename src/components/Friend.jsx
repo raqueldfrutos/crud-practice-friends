@@ -1,19 +1,39 @@
 import { useState } from "react";
 
-const API_URL = "http://localhost:3000/friends";
-
-function Friend({ id, img, name, lastName, age, gender }) {
+function Friend({ id, img, name, lastName, age, gender, handleEdit, handleDelete }) {
   const [isEditing, setIsEditing] = useState(false);
+  // declarando asi este estado me guardo los datos que me vienen ya del id concreto
+  const [dataFromId, setDataFromId] = useState({
+    name,
+    img,
+    lastName,
+    age,
+    gender
+  });
+
+  const handleSubmitEdit = e => {
+    e.preventDefault();
+    handleEdit(id, dataFromId);
+    setIsEditing(false);
+  };
+
+  const handleChange = e => {
+    setDataFromId({
+      ...dataFromId,
+      //este name se refiere al propio del input
+      [e.target.name]: e.target.value
+    });
+  };
 
   return (
     <section>
       <div className="FriendCard">
         {isEditing ? (
-          <form>
-            <input type="text" name="name" value={name} onChange="" />
-            <input type="text" name="lastName" value={lastName} onChange="" />
-            <input type="number" name="age" value={age} onChange="" />
-            <input type="text" name="gender" value={gender} onChange="" />
+          <form onSubmit={handleSubmitEdit}>
+            <input type="text" name="name" value={dataFromId.name} onChange={handleChange} />
+            <input type="text" name="lastName" value={dataFromId.lastName} onChange={handleChange} />
+            <input type="number" name="age" value={dataFromId.age} onChange={handleChange} />
+            <input type="text" name="gender" value={dataFromId.gender} onChange={handleChange} />
             <button type="sumbit">Editar</button>
           </form>
         ) : (
@@ -28,7 +48,7 @@ function Friend({ id, img, name, lastName, age, gender }) {
         )}
 
         <button onClick={() => setIsEditing(!isEditing)}>Edit Character</button>
-        <button>Delete</button>
+        <button onClick={() => handleDelete(id)}>Delete</button>
       </div>
     </section>
   );
