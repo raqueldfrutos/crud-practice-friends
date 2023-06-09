@@ -29,9 +29,9 @@ function FriendsList() {
   }, []);
 
   const displayFriends = () => {
-    return friends.map(friend => {
-      return <Friend key={friend.id} {...friend} handleEdit={handleEdit} handleDelete={handleDelete} />;
-    });
+    return friends.map(friend => (
+        <Friend key={friend.id} {...friend} handleEdit={handleEdit} handleDelete={handleDelete} />
+    ));
   };
 
   const cleanInputs = () => {

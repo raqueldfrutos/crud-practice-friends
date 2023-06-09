@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Friend({ id, img, name, lastName, age, gender, handleEdit, handleDelete }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -26,7 +27,7 @@ function Friend({ id, img, name, lastName, age, gender, handleEdit, handleDelete
   };
 
   return (
-    <section>
+    <div className="Friends-List">
       <div className="FriendCard">
         {isEditing ? (
           <form onSubmit={handleSubmitEdit}>
@@ -49,8 +50,13 @@ function Friend({ id, img, name, lastName, age, gender, handleEdit, handleDelete
 
         <button onClick={() => setIsEditing(!isEditing)}>Edit Character</button>
         <button onClick={() => handleDelete(id)}>Delete</button>
+        <br />
+        <Link to={`/friends/${id}`} className="DetailsLink">
+          {" "}
+          See character details{" "}
+        </Link>
       </div>
-    </section>
+    </div>
   );
 }
 
